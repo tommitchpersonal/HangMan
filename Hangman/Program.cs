@@ -1,15 +1,21 @@
-﻿using System;
+﻿using HangMan.Interfaces.Factories;
+using HangMan.Factories;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace HangMan;
-class Program
+namespace HangMan
 {
-    private const string VERSION = "V 1.0";
-    static void Main(string[] args)
+    class Program
     {
-        Console.WriteLine($"HangMan Game {VERSION}");
+        private const string VERSION = "V 1.0";
+        static void Main(string[] args)
+        {
+            Console.WriteLine($"HangMan Game {VERSION}");
 
-        var builder = Host.CreateDefaultBuilder(args);
-
+            var builder = Host.CreateDefaultBuilder(args)
+            .ConfigureServices((_, services) => 
+                services.AddSingleton<IModelFactory, ModelFactory>()
+            );
+        }
     }
 }

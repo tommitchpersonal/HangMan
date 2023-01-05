@@ -1,5 +1,5 @@
 using Xunit;
-using HangMan;
+using HangMan.Models;
 using FluentAssertions;
 
 public class TargetWordTests
@@ -12,11 +12,11 @@ public class TargetWordTests
 
         // Execute
         var sut = new TargetWord();
-        var dashes = sut.SetNewWord(testWord);
+        sut.SetNewWord(testWord);
 
         // Assert
-        dashes.Length.Should().Be(testWord.Length);
-        dashes.Should().Be("----");
+        sut.Dashes?.Length.Should().Be(testWord.Length);
+        sut.Dashes.Should().Be("----");
     }
 
     [Fact]
@@ -41,9 +41,70 @@ public class TargetWordTests
 
         // Execute
         var sut = new TargetWord();
-        var dashes = sut.SetNewWord(testWord);
+        sut.SetNewWord(testWord);
 
         // Assert
-        dashes.Should().Be("- ----");
+        sut.Value.Should().Be(testWord);
+        sut.Dashes.Should().Be("- ----");
+    }
+
+    [Fact]
+    public void ValueAndDashesAreEmptyStringsForEmptyString()
+    {
+        // Arrange
+        var testWord = string.Empty;
+
+        // Execute
+        var sut = new TargetWord();
+        sut.SetNewWord(testWord);
+
+        // Assert
+        sut.Value.Should().Be(testWord);
+        sut.Dashes.Should().Be(string.Empty);
+    }
+
+    [Fact]
+    public void ValueAndDashesAreEmptyStringForNullInput()
+    {
+        // Arrange
+        string? testWord = null;
+
+        // Execute
+        var sut = new TargetWord();
+        sut.SetNewWord(testWord);
+
+        // Assert
+        sut.Value.Should().Be(string.Empty);
+        sut.Dashes.Should().Be(string.Empty);
+    }
+
+    [Fact]
+    public void DoesNotAcceptNumbersInWord()
+    {
+        // Arrange
+        string? testWord = "T3st W0rd";
+
+        // Execute
+        var sut = new TargetWord();
+        sut.SetNewWord(testWord);
+
+        // Assert
+        sut.Value.Should().Be(string.Empty);
+        sut.Dashes.Should().Be(string.Empty);
+    }
+
+    [Fact]
+    public void DoesNotAcceptSpecialCharactersInWord()
+    {
+        // Arrange
+        string? testWord = "t£st w@rd";
+
+        // Execute
+        var sut  = new TargetWord();
+        sut.SetNewWord(testWord);
+
+        // Assert 
+        sut.Value.Should().Be(string.Empty);
+        sut.Dashes.Should().Be(string.Empty);
     }
 }
