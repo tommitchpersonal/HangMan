@@ -1,4 +1,5 @@
 ﻿using HangMan.Interfaces.Models;
+using HangMan.Models.ScaffoldComponents;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,10 @@ namespace HangMan.Models
     {
         public Scaffold()
         {
-            State = string.Empty;
+            State = new List<IScaffoldComponent>();
         }
 
-        public string State { get; set; }
+        public List<IScaffoldComponent> State { get; set; }
 
         public void Display()
         {
@@ -22,12 +23,12 @@ namespace HangMan.Models
         }
         public void AddComponent()
         {
-            switch(State)
+            switch(State.Count)
             {
                 // cannot use string.Empty as case statements don't accept evaluated expressions :(
-                case "":
+                case 0:
                 {
-                    State = BASE;
+                    State.Add(new ScaffoldBase());
                     break;
                 }
                 default:
@@ -35,11 +36,12 @@ namespace HangMan.Models
                     break;
                 }
             }
-        }
-
-        private const string BASE = @"    /|\
-                                         / | \
-                                        /  |  \
-                                       /___|___\  ";
+        } 
     }
+
+    public class State
+    {
+
+    }
+     
 }

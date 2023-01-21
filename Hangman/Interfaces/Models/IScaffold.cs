@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HangMan.Models.ScaffoldComponents;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace HangMan.Interfaces.Models
 {
     public interface IScaffold
     {
-        public string State { get; set; }
+        public List<IScaffoldComponent> State { get; set; }
         public void Display();
         public void AddComponent();
     }
