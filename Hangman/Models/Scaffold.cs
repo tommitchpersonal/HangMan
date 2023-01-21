@@ -15,16 +15,31 @@ namespace HangMan.Models
         }
 
         public string State { get; set; }
+
         public void Display()
         {
 
         }
         public void AddComponent()
         {
-
+            switch(State)
+            {
+                // cannot use string.Empty as case statements don't accept evaluated expressions :(
+                case "":
+                {
+                    State = BASE;
+                    break;
+                }
+                default:
+                {
+                    break;
+                }
+            }
         }
 
-        private const string BASE =
-            $"";
+        private const string BASE = @"    /|\
+                                         / | \
+                                        /  |  \
+                                       /___|___\  ";
     }
 }

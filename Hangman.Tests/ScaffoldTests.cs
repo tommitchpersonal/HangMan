@@ -17,6 +17,8 @@ namespace Hangman.Tests
         [Fact]
         public void OnFirstIncorrectAnswerStateIsScaffoldBase()
         {
+            var scaffold = new Scaffold();
+            scaffold.AddComponent();
 
         }
     }
