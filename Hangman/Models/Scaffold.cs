@@ -25,10 +25,49 @@ namespace HangMan.Models
         {
             switch(State.Count)
             {
-                // cannot use string.Empty as case statements don't accept evaluated expressions :(
                 case 0:
                 {
                     State.Add(new ScaffoldBase());
+                    break;
+                }
+                case 1:
+                {
+                    State.Add(new ScaffoldPole());
+                    break;
+                }
+                case 2:
+                {
+                    State.Add(new ScaffoldArm());
+                    break;
+                }
+                case 3:
+                {
+                    State.Add(new ScaffoldRope());
+                    break;
+                }
+                case 4:
+                {
+                    State.Add(new ScaffoldHead());
+                    break;
+                }
+                case 5:
+                {
+                    State.Add(new ScaffoldPersonArm());
+                    break;
+                }
+                case 6:
+                {
+                    State.Add(new ScaffoldPersonArm());
+                    break;
+                }
+                case 7:
+                {
+                    State.Add(new ScaffoldLeftLeg());
+                    break;
+                }
+                case 8:
+                {
+                    State.Add(new ScaffoldRightLeg());
                     break;
                 }
                 default:

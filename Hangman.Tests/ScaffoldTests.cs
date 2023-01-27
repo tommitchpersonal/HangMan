@@ -16,14 +16,76 @@ namespace Hangman.Tests
         }
 
         [Fact]
-        public void OnFirstIncorrectAnswerStateIsScaffoldBase()
+        public void FirstComponentAddedToScaffoldIsBase()
+        {
+            RunTest(1, typeof(ScaffoldBase));
+        }
+
+        [Fact]
+        public void SecondComponentAddedToScaffoldIsPole()
+        {
+            RunTest(2, typeof(ScaffoldPole));
+        }
+
+        [Fact]
+        public void ThirdComponentAddedToScaffoldIsArm()
+        {
+            RunTest(3, typeof(ScaffoldArm));
+        }
+
+        [Fact]
+        public void FourthComponentAddedToScaffoldIsRope()
+        {
+            RunTest(4, typeof(ScaffoldRope));
+        }
+
+        [Fact]
+        public void FifthComponentAddedToScaffoldIsHead()
+        {
+            RunTest(5, typeof(ScaffoldHead));
+        }
+
+        [Fact]
+        public void SixthComponentAddedToScaffoldIsBody()
+        {
+            RunTest(6, typeof(ScaffoldBody));
+        }
+
+        [Fact]
+        public void SeventhComponentAddedToScaffoldIsPersonArm()
+        {
+            RunTest(7, typeof(ScaffoldPersonArm));
+        }
+
+        [Fact]
+        public void EigthComponentAddedToScaffoldIsPersonArm()
+        {
+            RunTest(8, typeof(ScaffoldPersonArm));
+        }
+
+        [Fact]
+        public void NinthComponentAddedToScaffoldIsLeftLeg()
+        {
+            RunTest(9, typeof(ScaffoldLeftLeg));
+        }
+
+        [Fact]
+        public void TenthComponentAddedToScaffoldIsRightLeg()
+        {
+            RunTest(10, typeof(ScaffoldRightLeg));
+        }
+
+        private void RunTest(int componentNumber, Type expectedType)
         {
             var scaffold = new Scaffold();
-            scaffold.AddComponent();
-            scaffold.State.Count.Should().Be(1);
+            
+            for (var i = 0; i < componentNumber; i++)
+            {
+                scaffold.AddComponent();
+            }
 
-            var scaffoldBase = new ScaffoldBase();
-            scaffold.State[0].Value.Should().Be(scaffoldBase.Value);
+            scaffold.State.Count.Should().Be(componentNumber);
+            scaffold.State.Last().GetType().Should().Be(expectedType);
         }
     }
 }
