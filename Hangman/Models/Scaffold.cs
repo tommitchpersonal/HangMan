@@ -17,57 +17,18 @@ namespace HangMan.Models
 
         public List<IScaffoldComponent> State { get; set; }
 
-        public void Display()
-        {
-
-        }
         public void AddComponent()
         {
-            switch(State.Count)
+            State.Add(ComponentToolBox.GetScaffoldComponent(State.Count));
+        }
+
+        public void Display()
+        {
+            switch (State.Count) 
             {
-                case 0:
-                {
-                    State.Add(new ScaffoldBase());
-                    break;
-                }
                 case 1:
                 {
-                    State.Add(new ScaffoldPole());
-                    break;
-                }
-                case 2:
-                {
-                    State.Add(new ScaffoldArm());
-                    break;
-                }
-                case 3:
-                {
-                    State.Add(new ScaffoldRope());
-                    break;
-                }
-                case 4:
-                {
-                    State.Add(new ScaffoldHead());
-                    break;
-                }
-                case 5:
-                {
-                    State.Add(new ScaffoldPersonArm());
-                    break;
-                }
-                case 6:
-                {
-                    State.Add(new ScaffoldPersonArm());
-                    break;
-                }
-                case 7:
-                {
-                    State.Add(new ScaffoldLeftLeg());
-                    break;
-                }
-                case 8:
-                {
-                    State.Add(new ScaffoldRightLeg());
+                    Console.WriteLine(State[0].Value);
                     break;
                 }
                 default:
@@ -75,12 +36,6 @@ namespace HangMan.Models
                     break;
                 }
             }
-        } 
-    }
-
-    public class State
-    {
-
-    }
-     
+        }
+    }     
 }

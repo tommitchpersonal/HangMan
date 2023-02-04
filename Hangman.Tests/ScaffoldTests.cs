@@ -18,73 +18,73 @@ namespace Hangman.Tests
         [Fact]
         public void FirstComponentAddedToScaffoldIsBase()
         {
-            RunTest(1, typeof(ScaffoldBase));
+            RunTest(0, typeof(ScaffoldBase));
         }
 
         [Fact]
         public void SecondComponentAddedToScaffoldIsPole()
         {
-            RunTest(2, typeof(ScaffoldPole));
+            RunTest(1, typeof(ScaffoldPole));
         }
 
         [Fact]
         public void ThirdComponentAddedToScaffoldIsArm()
         {
-            RunTest(3, typeof(ScaffoldArm));
+            RunTest(2, typeof(ScaffoldArm));
         }
 
         [Fact]
         public void FourthComponentAddedToScaffoldIsRope()
         {
-            RunTest(4, typeof(ScaffoldRope));
+            RunTest(3, typeof(ScaffoldRope));
         }
 
         [Fact]
         public void FifthComponentAddedToScaffoldIsHead()
         {
-            RunTest(5, typeof(ScaffoldHead));
+            RunTest(4, typeof(ScaffoldHead));
         }
 
         [Fact]
         public void SixthComponentAddedToScaffoldIsBody()
         {
-            RunTest(6, typeof(ScaffoldBody));
+            RunTest(5, typeof(ScaffoldBody));
         }
 
         [Fact]
         public void SeventhComponentAddedToScaffoldIsPersonArm()
         {
-            RunTest(7, typeof(ScaffoldPersonArm));
+            RunTest(6, typeof(ScaffoldPersonArm));
         }
 
         [Fact]
         public void EigthComponentAddedToScaffoldIsPersonArm()
         {
-            RunTest(8, typeof(ScaffoldPersonArm));
+            RunTest(7, typeof(ScaffoldPersonArm));
         }
 
         [Fact]
         public void NinthComponentAddedToScaffoldIsLeftLeg()
         {
-            RunTest(9, typeof(ScaffoldLeftLeg));
+            RunTest(8, typeof(ScaffoldLeftLeg));
         }
 
         [Fact]
         public void TenthComponentAddedToScaffoldIsRightLeg()
         {
-            RunTest(10, typeof(ScaffoldRightLeg));
+            RunTest(9, typeof(ScaffoldRightLeg));
         }
 
         private void RunTest(int componentNumber, Type expectedType)
         {
             var scaffold = new Scaffold();
             
-            for (var i = 0; i < componentNumber; i++)
+            for (var i = 0; i <= componentNumber; i++)
             {
                 scaffold.AddComponent();
             }
 
-            scaffold.State.Count.Should().Be(componentNumber);
+            scaffold.State.Count.Should().Be(componentNumber + 1);
             scaffold.State.Last().GetType().Should().Be(expectedType);
         }
     }
