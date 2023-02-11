@@ -1,4 +1,6 @@
-﻿namespace HangMan.Models.ScaffoldComponents
+﻿using HangMan.Interfaces.Models;
+
+namespace HangMan.Models.ScaffoldComponents
 {
     public class ScaffoldBase : IScaffoldComponent
     {

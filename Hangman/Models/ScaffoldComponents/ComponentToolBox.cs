@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using HangMan.Interfaces.Models;
 
 namespace HangMan.Models.ScaffoldComponents
 {
     public static class ComponentToolBox
     {
-        private static List<IScaffoldComponent> scaffoldComponents = new List<IScaffoldComponent>()
+        private static readonly List<IScaffoldComponent> _scaffoldComponents = new()
         {
             new ScaffoldBase(),
             new ScaffoldPole(),
@@ -24,7 +20,7 @@ namespace HangMan.Models.ScaffoldComponents
 
         public static IScaffoldComponent GetScaffoldComponent(int componentToGet)
         {
-            return scaffoldComponents[componentToGet];
+            return _scaffoldComponents[componentToGet];
         }
     }
 }

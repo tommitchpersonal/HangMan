@@ -1,4 +1,5 @@
-﻿using HangMan.Interfaces.Models;
+﻿using HangMan.Interfaces.Builders;
+using HangMan.Interfaces.Models;
 using HangMan.Models.ScaffoldComponents;
 using System;
 using System.Collections.Generic;
@@ -10,12 +11,15 @@ namespace HangMan.Models
 {
     public class Scaffold : IScaffold
     {
-        public Scaffold()
+        public Scaffold(IScaffoldComponentArranger scaffoldBuilder)
         {
             State = new List<IScaffoldComponent>();
+            _scaffoldBuilder= scaffoldBuilder;
         }
 
         public List<IScaffoldComponent> State { get; set; }
+
+        private readonly IScaffoldComponentArranger _scaffoldBuilder;
 
         public void AddComponent()
         {
@@ -24,18 +28,8 @@ namespace HangMan.Models
 
         public void Display()
         {
-            switch (State.Count) 
-            {
-                case 1:
-                {
-                    Console.WriteLine(State[0].Value);
-                    break;
-                }
-                default:
-                {
-                    break;
-                }
-            }
+            var displayedScaffold = _scaffoldBuilder.ArrangeScaffoldComponents(State);
+            Console.WriteLine(displayedScaffold);
         }
     }     
 }

@@ -2,16 +2,19 @@
 using HangMan.Models;
 using HangMan.Models.ScaffoldComponents;
 using Xunit;
-
+using NSubstitute;
+using HangMan.Interfaces.Builders;
 
 namespace Hangman.Tests
 {
     public class ScaffoldTests
     {
+        private IScaffoldComponentArranger _sScaffoldBuilder = Substitute.For<IScaffoldComponentArranger>();
+
         [Fact]
         public void WhenInitialisedStateIsEmptyList()
         {
-            var scaffold = new Scaffold();
+            var scaffold = new Scaffold(_sScaffoldBuilder);
             scaffold.State.Count.Should().Be(0);
         }
 
@@ -77,7 +80,7 @@ namespace Hangman.Tests
 
         private void RunTest(int componentNumber, Type expectedType)
         {
-            var scaffold = new Scaffold();
+            var scaffold = new Scaffold(_sScaffoldBuilder);
             
             for (var i = 0; i <= componentNumber; i++)
             {

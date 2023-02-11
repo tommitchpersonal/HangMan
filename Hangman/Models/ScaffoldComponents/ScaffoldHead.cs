@@ -1,6 +1,8 @@
+using HangMan.Interfaces.Models;
+
 namespace HangMan.Models.ScaffoldComponents
 {
-        public class ScaffoldHead : IScaffoldComponent
+    public class ScaffoldHead : IScaffoldComponent
     {
         public string Value {get;}
 
