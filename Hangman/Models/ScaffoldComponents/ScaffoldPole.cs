@@ -8,17 +8,19 @@ namespace HangMan.Models.ScaffoldComponents
 
         public ScaffoldPole()
         {
-            Value = @"   |
-                         |
-                         |
-                         |
-                         |
-                         |
-                         |
-                         |
-                         |
-                         |
-                         |
+            Value = 
+           @"            
+                          |
+                          |
+                          |
+                          |
+                          |
+                          |
+                          |
+                          |
+                          |
+                          |
+                          |
             ";
         }
     }

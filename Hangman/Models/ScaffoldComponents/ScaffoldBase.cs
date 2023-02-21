@@ -8,7 +8,9 @@ namespace HangMan.Models.ScaffoldComponents
 
         public ScaffoldBase()
         {
-            Value = @"   /|\
+            // Weird offset is necessary for correct format
+
+            Value = @"             /|\
                         / | \
                        /  |  \
                       /___|___\  ";
