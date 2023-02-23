@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace HangMan.Interfaces.Models
 {
-    public interface IScaffoldComponent
+    public interface IScaffoldDisplayBox
     {
-        public string Value { get; }
+        public IScaffoldDisplay Select(int componentToGet);
     }
 }

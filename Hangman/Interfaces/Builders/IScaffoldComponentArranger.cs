@@ -9,6 +9,6 @@ namespace HangMan.Interfaces.Builders
 {
     public interface IScaffoldComponentArranger
     {
-        public string ArrangeScaffoldComponents(List<IScaffoldComponent> scaffoldState);
+        public string ArrangeScaffoldComponents(List<IScaffoldDisplay> scaffoldState);
     }
 }

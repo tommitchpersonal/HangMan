@@ -23,15 +23,17 @@ namespace HangMan
 
         static void Main(string[] args) 
         {
-            var scaffoldBase = new ScaffoldBase();
-            var scaffoldPole = new ScaffoldPole();
-            var scaffoldArm = new ScaffoldArm();
+            var scaffoldBase = new ScaffoldWithBase();
+            var scaffoldPole = new ScaffoldWithPole();
+            var scaffoldArm = new ScaffoldWithArm();
+            var scaffoldRope = new ScaffoldWithRope();
 
-            var state = new List<IScaffoldComponent>()
+            var state = new List<IScaffoldDisplay>()
             {
                 scaffoldBase,
                 scaffoldPole,
-                scaffoldArm
+                scaffoldArm,
+                scaffoldRope
             };
 
             var scaffoldComponentArranger = new ScaffoldComponentArranger();

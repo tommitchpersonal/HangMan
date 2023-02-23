@@ -2,14 +2,17 @@ using HangMan.Interfaces.Models;
 
 namespace HangMan.Models.ScaffoldComponents
 {
-    public class ScaffoldPole : IScaffoldComponent
+    public class ScaffoldWithRope : IScaffoldDisplay
     {
         public string Value {get;}
 
-        public ScaffoldPole()
+        public ScaffoldWithRope()
         {
-            Value = 
-           @"            
+            Value = @"   
+
+                           _________________________       
+                          |                         |
+                          |                         |
                           |
                           |
                           |
@@ -19,8 +22,10 @@ namespace HangMan.Models.ScaffoldComponents
                           |
                           |
                           |
-                          |
-                          |
+                         /|\
+                        / | \
+                       /  |  \
+                      /___|___\ 
             ";
         }
     }

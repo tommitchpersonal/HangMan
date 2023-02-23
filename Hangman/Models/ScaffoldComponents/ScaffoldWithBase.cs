@@ -2,15 +2,16 @@
 
 namespace HangMan.Models.ScaffoldComponents
 {
-    public class ScaffoldBase : IScaffoldComponent
+    public class ScaffoldWithBase : IScaffoldDisplay
     {
         public string Value { get; }
 
-        public ScaffoldBase()
+        public ScaffoldWithBase()
         {
             // Weird offset is necessary for correct format
 
-            Value = @"             /|\
+            Value = @"             
+                         /|\
                         / | \
                        /  |  \
                       /___|___\  ";

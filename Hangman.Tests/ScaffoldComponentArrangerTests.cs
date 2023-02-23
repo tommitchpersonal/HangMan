@@ -13,9 +13,9 @@ namespace Hangman.Tests
         [Fact]
         public void WhenPassedOnlyScaffoldBaseReturnsScaffoldBaseString()
         {
-            var testScaffoldBase = new ScaffoldBase();
+            var testScaffoldBase = new ScaffoldWithBase();
 
-            var testState = new List<IScaffoldComponent>()
+            var testState = new List<IScaffoldDisplay>()
             {
                 testScaffoldBase
             };
@@ -30,10 +30,10 @@ namespace Hangman.Tests
         [Fact]
         public void WhenPassedBaseAndPoleReturnsCorrectString()
         {
-            var testScaffoldBase = new ScaffoldBase();
-            var testScaffoldPole = new ScaffoldPole();
+            var testScaffoldBase = new ScaffoldWithBase();
+            var testScaffoldPole = new ScaffoldWithPole();
 
-            var testState = new List<IScaffoldComponent>()
+            var testState = new List<IScaffoldDisplay>()
             {
                 testScaffoldBase,
                 testScaffoldPole
@@ -49,11 +49,11 @@ namespace Hangman.Tests
         [Fact]
         public void WhenPassedArmRetrunsCorrectString()
         {
-            var testScaffoldBase = new ScaffoldBase();
-            var testScaffoldPole = new ScaffoldPole();
-            var testScaffoldArm = new ScaffoldArm();
+            var testScaffoldBase = new ScaffoldWithBase();
+            var testScaffoldPole = new ScaffoldWithPole();
+            var testScaffoldArm = new ScaffoldWithArm();
 
-            var testState = new List<IScaffoldComponent>()
+            var testState = new List<IScaffoldDisplay>()
             {
                 testScaffoldBase,
                 testScaffoldPole, 

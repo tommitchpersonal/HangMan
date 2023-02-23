@@ -21,49 +21,49 @@ namespace Hangman.Tests
         [Fact]
         public void FirstComponentAddedToScaffoldIsBase()
         {
-            RunTest(0, typeof(ScaffoldBase));
+            RunTest(0, typeof(ScaffoldWithBase));
         }
 
         [Fact]
         public void SecondComponentAddedToScaffoldIsPole()
         {
-            RunTest(1, typeof(ScaffoldPole));
+            RunTest(1, typeof(ScaffoldWithPole));
         }
 
         [Fact]
         public void ThirdComponentAddedToScaffoldIsArm()
         {
-            RunTest(2, typeof(ScaffoldArm));
+            RunTest(2, typeof(ScaffoldWithArm));
         }
 
         [Fact]
         public void FourthComponentAddedToScaffoldIsRope()
         {
-            RunTest(3, typeof(ScaffoldRope));
+            RunTest(3, typeof(ScaffoldWithRope));
         }
 
         [Fact]
         public void FifthComponentAddedToScaffoldIsHead()
         {
-            RunTest(4, typeof(ScaffoldHead));
+            RunTest(4, typeof(ScaffoldWithHead));
         }
 
         [Fact]
         public void SixthComponentAddedToScaffoldIsBody()
         {
-            RunTest(5, typeof(ScaffoldBody));
+            RunTest(5, typeof(ScaffoldWithBody));
         }
 
         [Fact]
         public void SeventhComponentAddedToScaffoldIsPersonArm()
         {
-            RunTest(6, typeof(ScaffoldPersonArm));
+            RunTest(6, typeof(ScaffoldWithLeftArm));
         }
 
         [Fact]
         public void EigthComponentAddedToScaffoldIsPersonArm()
         {
-            RunTest(7, typeof(ScaffoldPersonArm));
+            RunTest(7, typeof(ScaffoldWithLeftArm));
         }
 
         [Fact]
@@ -75,7 +75,7 @@ namespace Hangman.Tests
         [Fact]
         public void TenthComponentAddedToScaffoldIsRightLeg()
         {
-            RunTest(9, typeof(ScaffoldRightLeg));
+            RunTest(9, typeof(ScaffoldWithRightLeg));
         }
 
         private void RunTest(int componentNumber, Type expectedType)

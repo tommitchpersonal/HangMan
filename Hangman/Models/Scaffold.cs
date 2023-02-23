@@ -11,25 +11,24 @@ namespace HangMan.Models
 {
     public class Scaffold : IScaffold
     {
-        public Scaffold(IScaffoldComponentArranger scaffoldBuilder)
+        public Scaffold(IScaffoldDisplayBox scaffoldDisplayBox)
         {
-            State = new List<IScaffoldComponent>();
-            _scaffoldBuilder= scaffoldBuilder;
+            _wrongGuesses = 0;
+            _scaffoldDisplayBox= scaffoldDisplayBox;
+            ScaffoldDisplay = null;
+
         }
 
-        public List<IScaffoldComponent> State { get; set; }
+        private int _wrongGuesses { get; set; }
 
-        private readonly IScaffoldComponentArranger _scaffoldBuilder;
+        private readonly IScaffoldDisplayBox _scaffoldDisplayBox;
 
-        public void AddComponent()
+        public IScaffoldDisplay? ScaffoldDisplay { get; set; }
+
+        public void AddWrongGuess()
         {
-            State.Add(ComponentToolBox.GetScaffoldComponent(State.Count));
-        }
-
-        public void Display()
-        {
-            var displayedScaffold = _scaffoldBuilder.ArrangeScaffoldComponents(State);
-            Console.WriteLine(displayedScaffold);
+            _wrongGuesses ++;
+            ScaffoldDisplay = _scaffoldDisplayBox.Select(_wrongGuesses);
         }
     }     
 }

@@ -5,13 +5,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace HangMan.Builders
 {
     public class ScaffoldComponentArranger : IScaffoldComponentArranger
     {
-        public string ArrangeScaffoldComponents(List<IScaffoldComponent> scaffoldState)
+        public string ArrangeScaffoldComponents(List<IScaffoldDisplay> scaffoldState)
         {
             switch(scaffoldState.Count)
             {
@@ -22,31 +23,41 @@ namespace HangMan.Builders
                 }
                 case 2:
                 {
-                    return AttachPoleToBase(scaffoldState);    
+                    return AttachPoleToBase(scaffoldState.First().Value, scaffoldState[1].Value);    
                 }
                 case 3: 
-                { 
-                    return AttachArmToPole(scaffoldState);
+                {
+                    var poleAndBase = AttachPoleToBase(scaffoldState.First().Value, scaffoldState[1].Value);
+                    return AttachArmToScaffold(scaffoldState[2].Value, poleAndBase);
+                }
+                case 4:
+                {
+                    var poleAndBase = AttachPoleToBase(scaffoldState.First().Value, scaffoldState[1].Value);
+                    var armAndPole = AttachArmToScaffold(scaffoldState[2].Value, poleAndBase);
+                    return AttachRopeToScaffold(scaffoldState[3].Value, armAndPole);
+
                 }
             }
 
             return string.Empty;
         }
 
-        private static string AttachPoleToBase(List<IScaffoldComponent> scaffoldState)
+        private static string AttachPoleToBase(string scaffoldBase, string scaffoldPole)
         {
-            var scaffoldBase = scaffoldState.First();
-            var scaffoldPole = scaffoldState[1];
-
-            return scaffoldPole.Value + scaffoldBase.Value;
+            var poleAttachedToArm = scaffoldPole + scaffoldBase;
+            return poleAttachedToArm;
         }
 
-        private static string AttachArmToPole(List<IScaffoldComponent> scaffoldState)
+        private static string AttachArmToScaffold(string scaffoldArm, string scaffold)
         {
-            var poleAttachedToBase = AttachPoleToBase(scaffoldState);
-            var scaffoldArm = scaffoldState[2];
-
-            return scaffoldArm.Value + poleAttachedToBase;
+            return  $"{scaffoldArm}{scaffold}";
         }
+
+        private static string AttachRopeToScaffold(string rope, string scaffold)
+        {
+            return $"{scaffold}  {rope}";
+        }
+
+
     }
 }

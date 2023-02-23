@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace HangMan.Interfaces.Models
 {
-    public interface IScaffold
+    public interface IScaffoldDisplay
     {
-        public IScaffoldDisplay? ScaffoldDisplay { get; set; }
-        public void AddWrongGuess();
+        public string Value { get; }
     }
 }
