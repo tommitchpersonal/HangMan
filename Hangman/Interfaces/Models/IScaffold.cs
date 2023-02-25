@@ -8,7 +8,7 @@ namespace HangMan.Interfaces.Models
 {
     public interface IScaffold
     {
-        public IScaffoldDisplay? ScaffoldDisplay { get; set; }
+        public IScaffoldDisplay? Display { get; set; }
         public void AddWrongGuess();
     }
 }

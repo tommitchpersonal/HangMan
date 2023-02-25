@@ -1,11 +1,4 @@
-﻿using HangMan.Interfaces.Builders;
-using HangMan.Interfaces.Models;
-using HangMan.Models.ScaffoldComponents;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using HangMan.Interfaces.Models;
 
 namespace HangMan.Models
 {
@@ -15,20 +8,19 @@ namespace HangMan.Models
         {
             _wrongGuesses = 0;
             _scaffoldDisplayBox= scaffoldDisplayBox;
-            ScaffoldDisplay = null;
-
+            Display = _scaffoldDisplayBox.Select(_wrongGuesses);
         }
 
         private int _wrongGuesses { get; set; }
 
         private readonly IScaffoldDisplayBox _scaffoldDisplayBox;
 
-        public IScaffoldDisplay? ScaffoldDisplay { get; set; }
+        public IScaffoldDisplay? Display { get; set; }
 
         public void AddWrongGuess()
         {
             _wrongGuesses ++;
-            ScaffoldDisplay = _scaffoldDisplayBox.Select(_wrongGuesses);
+            Display = _scaffoldDisplayBox.Select(_wrongGuesses);
         }
     }     
 }
