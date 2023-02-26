@@ -4,8 +4,14 @@ namespace HangMan.Models
 {
     public class TargetWord : ITargetWord
     {
-        public string? Value {get; set;}
-        public string? Dashes {get; set;}
+        public string? Value { get; set; }
+        public string? Dashes { get; set; }
+
+        public TargetWord()
+        {
+            Value = string.Empty;
+            Dashes= string.Empty;
+        }
         public void SetNewWord(string? wordToSet)
         {
             if (wordToSet == null)
@@ -25,7 +31,7 @@ namespace HangMan.Models
             Dashes = BuildDashesFromWord(wordToSet);
         }
 
-        private string BuildDashesFromWord(string word)
+        private static string BuildDashesFromWord(string word)
         {
             var dashes = string.Empty;
             
@@ -46,7 +52,7 @@ namespace HangMan.Models
             return dashes;
         }
 
-        private bool OnlyContainsLettersAndSpaces(string word)
+        private  static bool OnlyContainsLettersAndSpaces(string word)
         {
             return word.All(c => Char.IsLetter(c) || Char.IsWhiteSpace(c));
         }
