@@ -15,9 +15,15 @@ namespace HangMan
             Console.WriteLine($"HangMan Game {VERSION}");
 
             var builder = Host.CreateDefaultBuilder(args)
-            .ConfigureServices((_, services) =>
-                services.AddSingleton<IModelFactory, ModelFactory>()
+                .ConfigureServices((_, services) => {
+                    services.AddSingleton<IModelFactory, ModelFactory>();
+                    services.AddSingleton<IScaffoldDisplayBox, ScaffoldDisplayBox>();
+                    services.AddSingleton<IGuessesFactory, GuessesFactory>();
+                    services.AddHostedService<>
+                }  
             );
+
+            var host = builder.Build();
         }
 
     }

@@ -2,7 +2,6 @@
 using HangMan.Interfaces.Models;
 using Xunit;
 using NSubstitute;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel.Utilities;
 using HangMan.Models;
 
 namespace Hangman.Tests

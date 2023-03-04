@@ -48,7 +48,7 @@ namespace HangMan
 
         private static bool GuessIsLetter(char guess)
         {
-            var isLetter = Char.IsLetter(guess);
+            var isLetter = char.IsLetter(guess);
 
             if (!isLetter)
             {
