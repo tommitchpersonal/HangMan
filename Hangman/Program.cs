@@ -4,13 +4,14 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using HangMan.Models.ScaffoldComponents;
 using HangMan.Interfaces.Models;
+using HangMan.HostedServices;
 
 namespace HangMan
 {
     class Program
     {
         private const string VERSION = "V 1.0";
-        static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             Console.WriteLine($"HangMan Game {VERSION}");
 
@@ -19,11 +20,13 @@ namespace HangMan
                     services.AddSingleton<IModelFactory, ModelFactory>();
                     services.AddSingleton<IScaffoldDisplayBox, ScaffoldDisplayBox>();
                     services.AddSingleton<IGuessesFactory, GuessesFactory>();
-                    services.AddHostedService<>
+                    services.AddSingleton<IHangmanGame, HangmanGame>();
+                    services.AddHostedService<HangmanGameHostedService>();
                 }  
             );
 
             var host = builder.Build();
+            await host.RunAsync();
         }
 
     }

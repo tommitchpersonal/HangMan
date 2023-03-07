@@ -31,6 +31,11 @@ namespace HangMan.Models
             Dashes = BuildDashesFromWord(wordToSet);
         }
 
+        public bool IsValid()
+        {
+            return Value != string.Empty;
+        }
+
         private static string BuildDashesFromWord(string word)
         {
             var dashes = string.Empty;
