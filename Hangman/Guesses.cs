@@ -43,7 +43,7 @@ namespace HangMan
 
         public bool HasGuessBeenMadeAlready(char guess)
         {
-            return _incorrectGuesses.Contains(guess) || _correctGuesses.Contains(guess); 
+            return _incorrectGuesses.Contains(ToUpperCase(guess)) || _correctGuesses.Contains(ToUpperCase(guess)); 
         }
 
         private static bool GuessIsLetter(char guess)

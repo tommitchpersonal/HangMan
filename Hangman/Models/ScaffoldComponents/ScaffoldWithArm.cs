@@ -8,7 +8,7 @@ namespace HangMan.Models.ScaffoldComponents
 
         public ScaffoldWithArm()
         {
-            Value = @"     _________________________
+            Value = @"                           _________________________
                           |
                           |
                           |

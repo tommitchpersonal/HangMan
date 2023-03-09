@@ -11,8 +11,8 @@ namespace HangMan.Models.ScaffoldComponents
             Value = @"   
 
                            _________________________       
-                          |                         |
-                          |                         |
+                          |                        |
+                          |                        |
                           |
                           |
                           |

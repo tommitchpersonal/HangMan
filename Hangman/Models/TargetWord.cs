@@ -10,7 +10,7 @@ namespace HangMan.Models
         public TargetWord()
         {
             Value = string.Empty;
-            Dashes= string.Empty;
+            Dashes = string.Empty;
         }
         public void SetNewWord(string? wordToSet)
         {

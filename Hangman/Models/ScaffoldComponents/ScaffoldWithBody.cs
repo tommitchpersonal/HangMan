@@ -9,15 +9,15 @@ namespace HangMan.Models.ScaffoldComponents
         public ScaffoldWithBody()
         {
             Value = @"    __________________________ 
-                          |                         |                                      
-                          |                         |
-                          |                        ---
-                          |                       |   |
-                          |                       |___|
-                          |                         |                   
-                          |                         |
-                          |                         |
-                          |                         | 
+                          |                        |                                      
+                          |                        |
+                          |                       ---
+                          |                      |   |
+                          |                      |___|
+                          |                        |                   
+                          |                        |
+                          |                        |
+                          |                        | 
                           |
                           |
                          /|\

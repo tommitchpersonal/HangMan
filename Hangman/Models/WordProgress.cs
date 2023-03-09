@@ -44,6 +44,11 @@ namespace HangMan.Models
 
         }
 
+        public bool Guessed()
+        {
+            return State == _targetWord.Value?.ToUpperInvariant();
+        }
+
         private static bool Match(char letter, char targetWordLetter)
         {
             return letter.ToString().ToUpperInvariant() == targetWordLetter.ToString().ToUpperInvariant();

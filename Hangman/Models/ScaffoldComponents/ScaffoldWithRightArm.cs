@@ -14,15 +14,15 @@ namespace HangMan.Models.ScaffoldComponents
         public ScaffoldWithRightArm()
         {
             Value = @"    __________________________ 
-                          |                         |                                      
-                          |                         |
-                          |                        ---
-                          |                       |   |
-                          |                       |___|
-                          |                         |                   
-                          |                     ____|____
-                          |                         |
-                          |                         | 
+                          |                        |                                      
+                          |                        |
+                          |                       ---
+                          |                      |   |
+                          |                      |___|
+                          |                        |                   
+                          |                    ____|____
+                          |                        |
+                          |                        | 
                           |
                           |
                          /|\

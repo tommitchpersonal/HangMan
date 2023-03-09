@@ -1,4 +1,5 @@
 ﻿using HangMan.Interfaces.Models;
+using HangMan.Models.ScaffoldComponents;
 
 namespace HangMan.Models
 {
@@ -21,6 +22,11 @@ namespace HangMan.Models
         {
             _wrongGuesses ++;
             Display = _scaffoldDisplayBox.Select(_wrongGuesses);
+        }
+
+        public bool Completed()
+        {
+            return Display?.GetType() == typeof(ScaffoldWithLeftLeg);
         }
     }     
 }
