@@ -5,13 +5,13 @@ A quick and easy hangman game
 .NET 7.0
 
 # How To Run
-Download Releases.zip file for the latest release.
-Extract the .zip.
+Download Releases.zip file for the latest release.__
+Extract the .zip.__
 Either run the executable if using windows or use the command "dotnet HangMan.dll".
 
 # Demonstrated Skills
-C# Console
-OOP Principles e.g. Encapsulation
-TDD
+C# Console__
+OOP Principles e.g. Encapsulation__
+TDD__
 Dependency Injection
 
