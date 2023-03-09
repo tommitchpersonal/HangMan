@@ -1,11 +1,5 @@
 ﻿using FluentAssertions;
-using HangMan.Interfaces.Models;
 using HangMan.Models.ScaffoldComponents;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Hangman.Tests
