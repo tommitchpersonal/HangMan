@@ -23,6 +23,7 @@ namespace HangMan.HostedServices
             catch(OperationCanceledException)
             {
                 Console.WriteLine("Closing game");
+                Environment.Exit(0);
             }
         }
     }

@@ -8,7 +8,8 @@ namespace HangMan.Models.ScaffoldComponents
 
         public ScaffoldWithLeftArm()
         {
-            Value = @"    __________________________ 
+            // Strange offset is required so it is displayed properly
+            Value = @"                          __________________________ 
                           |                        |                                      
                           |                        |
                           |                       ---

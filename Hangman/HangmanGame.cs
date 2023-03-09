@@ -1,13 +1,7 @@
-﻿using HangMan.Factories;
-using HangMan.Interfaces;
+﻿using HangMan.Interfaces;
 using HangMan.Interfaces.Factories;
 using HangMan.Interfaces.Models;
 using HangMan.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HangMan
 {
@@ -20,7 +14,7 @@ namespace HangMan
         private const string PLAYER_2 = "Player 2";
 
 
-        public HangmanGame(IModelFactory modelFactory, IGuessesFactory guessesFactory, IScaffoldDisplayBox scaffoldDisplayBox)
+        public HangmanGame(IModelFactory modelFactory, IGuessesFactory guessesFactory)
         {
             _modelFactory = modelFactory;
             _guessesFactory = guessesFactory;
@@ -30,10 +24,55 @@ namespace HangMan
         {
             await Task.Delay(2000, stoppingToken);
 
-            while (true)
+            while (!stoppingToken.IsCancellationRequested)
             {
-                var targetWord = GetNewTargetWord();
-                RunRound(targetWord);
+                RunRound(stoppingToken);
+            }
+        }
+
+        private void RunRound(CancellationToken stoppingToken)
+        {
+            var targetWord = GetNewTargetWord();
+
+            var roundComplete = false;
+
+            var scaffold = _modelFactory.CreateScaffold();
+            var wordProgress = _modelFactory.CreateWordProgress(targetWord);
+
+            var guesses = _guessesFactory.CreateGuesses();
+
+            while (!roundComplete && !stoppingToken.IsCancellationRequested) 
+            {
+                Console.WriteLine(wordProgress.State);
+
+                var guess = GetGuess(guesses, stoppingToken);
+                Console.WriteLine("");
+                wordProgress.Update(guess);
+
+                if (IsCorrect(targetWord, guess))
+                {
+                    CorrectGuess(guess, guesses);
+                }
+                else
+                {
+                    IncorrectGuess(guess, guesses, scaffold);
+                }
+
+                Console.WriteLine("");
+                Console.WriteLine(scaffold.Display?.Value);
+                Console.WriteLine("");
+                Console.WriteLine(guesses.ReturnIncorrectGuessesAsString());
+                Console.WriteLine("");
+
+                if (scaffold.Completed())
+                {
+                    roundComplete = EndRound(PLAYER_1);
+                }
+
+                if (wordProgress.Guessed())
+                {
+                    roundComplete = EndRound(PLAYER_2);
+                }
             }
         }
 
@@ -62,61 +101,13 @@ namespace HangMan
             Console.Write(new String(' ', Console.BufferWidth));
         }
 
-        private void RunRound(ITargetWord targetWord)
-        {
-            if (string.IsNullOrEmpty(targetWord.Value) || string.IsNullOrEmpty(targetWord.Dashes))
-            {
-                throw new NullReferenceException("The target word value or dashes were not set");
-            }
-
-            var roundComplete = false;
-
-            var scaffold = _modelFactory.CreateScaffold();
-            var wordProgress = _modelFactory.CreateWordProgress(targetWord);
-
-            var guesses = _guessesFactory.CreateGuesses();
-
-            while (!roundComplete) 
-            {
-                Console.WriteLine(wordProgress.State);
-
-                var guess = GetGuess(guesses);
-                Console.WriteLine("");
-                wordProgress.Update(guess);
-
-                if (targetWord.Value.ToUpperInvariant().Contains(char.ToUpperInvariant(guess)))
-                {
-                    CorrectGuess(guess, guesses);
-                }
-                else
-                {
-                    IncorrectGuess(guess, guesses, scaffold);
-                }
-
-                Console.WriteLine("");
-                Console.WriteLine(scaffold.Display?.Value);
-                Console.WriteLine("");
-                Console.WriteLine(guesses.ReturnIncorrectGuessesAsString());
-                Console.WriteLine("");
-
-                if (scaffold.Completed())
-                {
-                    roundComplete = EndRound(PLAYER_1);
-                }
-
-                if (wordProgress.Guessed())
-                {
-                    roundComplete = EndRound(PLAYER_2);
-                }
-            }
-        }
-
-        private static char GetGuess(IGuesses guesses)
+        private static char GetGuess(IGuesses guesses, CancellationToken stoppingToken)
         {
             char guess = new();
 
-            while (!char.IsLetter(guess) || guesses.HasGuessBeenMadeAlready(guess))
+            while ((!char.IsLetter(guess) || guesses.HasGuessBeenMadeAlready(guess)) && !stoppingToken.IsCancellationRequested)
             {
+                Console.WriteLine("");
                 Console.WriteLine($"{PLAYER_2} Enter a guess");
                 guess = Console.ReadKey().KeyChar;
             }
@@ -142,6 +133,15 @@ namespace HangMan
             Console.WriteLine($"{winner} Wins");
             Console.WriteLine("");
             return true;
+        }
+
+        private static bool IsCorrect(ITargetWord? targetWord, char guess)
+        {
+            if (targetWord ?.Value == null)
+            {
+                throw new NullReferenceException("Target word was null");
+            }
+            return targetWord.Value.ToUpperInvariant().Contains(char.ToUpperInvariant(guess));
         }
     }
 }

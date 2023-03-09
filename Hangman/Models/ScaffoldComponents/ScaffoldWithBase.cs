@@ -8,8 +8,6 @@ namespace HangMan.Models.ScaffoldComponents
 
         public ScaffoldWithBase()
         {
-            // Weird offset is necessary for correct format
-
             Value = @"             
                          /|\
                         / | \
